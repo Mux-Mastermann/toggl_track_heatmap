@@ -15,4 +15,6 @@ pixela = Pixela(os.getenv("pixela_username"), os.getenv("pixela_token"))
 
 #----------------------------------- EXEC ---------------------------------------------#
 
-print(toggl.get_tracked_time())
+print(toggl.projects)
+for project in toggl.projects:
+    print(project["name"])

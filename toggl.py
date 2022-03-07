@@ -3,7 +3,9 @@ import requests
 class Toggl:
     def __init__(self, token: str):
         self.token = token
-        self.user_data = None
+        self.workspace_id = None
+        self.projects = None
+        self.get_user_data()
 
     
     def get_user_data(self):
@@ -16,7 +18,10 @@ class Toggl:
         response = requests.get(url=endpoint, auth=requests.auth.HTTPBasicAuth(self.token, 'api_token'), params=params)
         response.raise_for_status()
 
-        return response.json()["data"]
+        data = response.json()["data"]
+
+        self.workspace_id = data["default_wid"]
+        self.projects = [project for project in data["projects"] if project["wid"] == self.workspace_id and project["active"]]
 
 
     def get_tracked_time(self):
