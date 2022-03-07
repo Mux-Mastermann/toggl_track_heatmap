@@ -1,12 +1,18 @@
-import os
-from pixela import Pixela
-from dotenv import load_dotenv
+#----------------------------------- INIT --------------------------------------------#
 
+# Importing Modules
+import os
+from dotenv import load_dotenv
+from pixela import Pixela
+from toggl import Toggl
+
+# setup 
 load_dotenv()
 
-pixela_username = os.getenv("pixela_username")
-pixela_token = os.getenv("pixela_token")
+toggl = Toggl(os.getenv("toggl_token"))
 
-pixela = Pixela(pixela_username, pixela_token)
+pixela = Pixela(os.getenv("pixela_username"), os.getenv("pixela_token"))
 
-print(pixela.create_user())
+#----------------------------------- EXEC ---------------------------------------------#
+
+print(toggl.get_tracked_time())
