@@ -15,6 +15,9 @@ pixela = Pixela(os.getenv("pixela_username"), os.getenv("pixela_token"))
 
 #----------------------------------- EXEC ---------------------------------------------#
 
-print(toggl.projects)
-for project in toggl.projects:
-    print(project["name"])
+# print(toggl.projects)
+print([client["name"] for client in toggl.clients])
+print([project["name"] for project in toggl.active_projects])
+print([tag["name"] for tag in toggl.tags])
+
+# print(pixela.get_graphs())
